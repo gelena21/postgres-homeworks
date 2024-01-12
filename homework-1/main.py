@@ -7,7 +7,7 @@ FILE_EMPLOYEES_DATA = 'north_data/employees_data.csv'
 FILE_ORDERS_DATA = 'north_data/orders_data.csv'
 
 
-def insert_data_to_sql(filename, tablename):
+def insert_datas_to_sql(filename, tablename):
     try:
         with open(filename, 'r', encoding='UTF-8') as file:
             data = csv.DictReader(file)
@@ -25,3 +25,8 @@ def insert_data_to_sql(filename, tablename):
                         values_designation.clear()
     finally:
         conn.close()
+
+
+insert_datas_to_sql(FILE_CUSTOMERS_DATA, 'orders')
+insert_datas_to_sql(FILE_EMPLOYEES_DATA, 'employees')
+insert_datas_to_sql(FILE_ORDERS_DATA, 'customers')

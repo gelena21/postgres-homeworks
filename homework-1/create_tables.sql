@@ -24,3 +24,18 @@ CREATE TABLE orders
 	order_date varchar(100) NOT NULL,
 	ship_city varchar(100) NOT NULL
 )
+
+ALTER TABLE employees
+ALTER COLUMN employee_id TYPE INT,
+ALTER COLUMN birth_date TYPE VARCHAR(100),
+ALTER COLUMN notes TYPE VARCHAR(500);
+
+ALTER TABLE customers
+ALTER COLUMN customer_id TYPE VARCHAR(10);
+
+ALTER TABLE orders
+ALTER COLUMN order_id TYPE INT,
+ALTER COLUMN customer_id TYPE VARCHAR(10),
+ALTER COLUMN employee_id TYPE INT,
+ALTER COLUMN order_date TYPE VARCHAR(100),
+ALTER COLUMN ship_city TYPE VARCHAR(100)

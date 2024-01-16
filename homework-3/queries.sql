@@ -1,21 +1,12 @@
 -- Напишите запросы, которые выводят следующую информацию:
 -- 1. Название компании заказчика (company_name из табл. customers) и ФИО сотрудника, работающего над заказом этой компании (см таблицу employees),
 -- когда и заказчик и сотрудник зарегистрированы в городе London, а доставку заказа ведет компания United Package (company_name в табл shippers)
-SELECT
-    c.company_name AS customer_company,
-    CONCAT(e.first_name, ' ', e.last_name) AS employee_name
-FROM
-    customers c
-JOIN
-    employees e ON c.employee_id = e.employee_id
-JOIN
-    orders o ON c.customer_id = o.customer_id
-JOIN
-    shippers s ON o.shipper_id = s.shipper_id
-WHERE
-    c.city = 'London'
-    AND e.city = 'London'
-    AND s.company_name = 'United Package';
+SELECT c.company_name AS customer_company, CONCAT(e.first_name, ' ', e.last_name) AS employee_name
+FROM orders o
+JOIN customers c USING (customer_id)
+JOIN employees e USING (employee_id)
+JOIN shippers s ON o.ship_via = s.shipper_id
+WHERE c.city = 'London' AND e.city = 'London' AND s.company_name = 'United Package';
 
 
 -- 2. Наименование продукта, количество товара (product_name и units_in_stock в табл products),
